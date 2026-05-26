@@ -6,12 +6,10 @@ import combo from "./assets/combo.avif";
 
 import casal from "./assets/casal.webp";
 
+import CardProduto from './components/CardProduto'
+
 export default function App() {
   const [tipoCombo, setTipoCombo] = useState('casal');
-
-  const alterarCombo = () => {
-    setTipoCombo(tipoCombo === "casal" ? "familia" : "casal");
-  };
 
   const dadosCombo = {
     casal: {
@@ -34,15 +32,31 @@ export default function App() {
 
       descricao:
         "Quatro hamburgueres, quatro porções de batata e quatro refrigerantes.",
-    },
-  };
+    }
+  }
+
+  const alterarCombo = () => {
+    setTipoCombo(tipoCombo === "casal" ? "familia" : "casal");
+  }
+
+  const dados = dadosCombo[tipoCombo]
 
   return (
     <>
       <div className="container">
         <h1>Escolha o seu combo</h1>
 
-        <button>Mudar Combo</button>
+        <button onclick={alterarCombo}>Mudar Combo</button>
+
+        <CardProduto>
+          imagem={dados.imagem}
+
+          titulo={dados.titulo}
+
+          preco={dados.preco}
+
+          descricao={dados.descricao}
+        </CardProduto>
       </div>
     </>
   );
